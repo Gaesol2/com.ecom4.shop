@@ -38,7 +38,18 @@
 					</tr>
 					<tr>
 						<th>상품 이미지</th>
-						<td><input type="file" name="image2" class="chk" title="이미지" placeholder="상품 설명을 입력하시오"></td>
+						<td>
+							<image alt="이미지" src="upload/${pdto.image}">
+							<c:choose>
+								<c:when test="${pdto.image==null or pdto.image==ready.gif}">
+									<input type="file" name="image2" class="chk" title="이미지" value="${pdto.image }">
+								</c:when>
+								<c:when test="${pdto.image!=null and pdto.image!=ready.gif}">
+									<input type="file" name="image2" title="이미지" value="${pdto.image }">
+								</c:when>
+							</c:choose>
+							
+						</td>
 					</tr>
 					<tr>
 						<th colspan="2"><input id="submitInForm" type="button" value="상품수정전송"></th>
