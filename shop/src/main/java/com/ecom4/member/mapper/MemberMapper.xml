@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.ecom4.member.dao.MemberDAO">
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(mem_id) FROM member
+		WHERE mem_id = #{mem_id}
+	</select>
+
+	<insert id="memberJoin" parameterType="mdto">
+		INSERT INTO member (mem_id, m_passwd, m_name, m_email, m_phone,
+		zipcode, address, address2, m_job, m_role)
+		VALUES(#{mem_id}, #{m_passwd}, #{m_name}, #{m_email}, #{m_phone},
+		#{zipcode}, #{address}, #{address2}, #{m_job}, 'mem')
+	</insert>
+	
+	<select id="getMember" parameterType="mdto" resultType="mdto">
+		SELECT mem_id, m_passwd, m_name, m_email, m_phone,
+		zipcode, address, address2, m_job, m_role
+		FROM member
+		WHERE mem_id = #{mem_id} AND m_passwd = #{m_passwd}
+	</select>
+	
+	<select id="searchId" parameterType="mdto" resultType="mdto">
+		SELECT mem_id
+		FROM member
+		WHERE m_name = #{m_name} AND m_phone = #{m_phone}
+	</select>
+	
+	<select id="searchPw" parameterType="mdto" resultType="mdto">
+		SELECT m_passwd
+		FROM member
+		WHERE mem_id = #{mem_id} AND m_name = #{m_name} AND m_phone = #{m_phone}
+	
+	</select>
+	
+	<select id="getInfo" parameterType="mdto" resultType="mdto">
+		SELECT mem_id, m_passwd, m_name, m_email, m_phone,
+		zipcode, address, address2, m_job
+		FROM member
+		WHERE mem_id = #{mem_id}
+	</select>
+	
+	<update id="updatePw" parameterType="mdto">
+		UPDATE member SET m_passwd = #{m_passwd}
+		WHERE mem_id = #{mem_id}
+	</update>
+	
+	<select id="getMemberTot" parameterType="mdto" resultType="int">
+		SELECT COUNT(mem_id)
+		FROM member
+		WHERE m_role = 'mem'
+	</select>
+	
+	<select id="getMembers" parameterType="mdto" resultType="mdto">
+		SELECT mem_id, m_passwd, m_name, m_email, m_phone,
+		zipcode, address, address2, m_job, m_role
+		FROM member
+		WHERE m_role = 'mem'
+	</select>
+	
+	<update id = "memUpProc" parameterType="mdto">
+	UPDATE member SET
+	m_passwd = #{m_passwd},
+	m_name   = #{m_name  },
+	m_email  = #{m_email },
+	m_phone	 = #{m_phone },
+	zipcode  = #{zipcode },
+	address  = #{address },
+	address2 = #{address2},
+	m_job    = #{m_job   }
+	WHERE mem_id = #{mem_id}
+	                     
+	</update>
+	
+</mapper>

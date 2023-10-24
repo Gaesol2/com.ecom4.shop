@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#member th, td{
+	border:1px blue solid;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+#member th {color: blue;}
+
+#member th.col {width:300px;}

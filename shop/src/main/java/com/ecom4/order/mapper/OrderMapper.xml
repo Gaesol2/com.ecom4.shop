@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.ecom4.order.dao.OrderDAO">
+	<insert id="insertOrders" parameterType="list">
+	
+		<selectKey keyProperty="o_no" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(o_no), 0)+1 AS o_no FROM ordert
+		</selectKey>
+	
+		<foreach collection="list" item="ovo" index="index" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
+			INTO ordert(o_no, price, amount, quantity, o_regdate, state, mem_id, p_no)
+			VALUES(#{o_no}, #{ovo.price}, #{ovo.price}*#{ovo.quantity}, #{ovo.quantity}, SYSDATE, 1, #{ovo.mem_id}, #{ovo.p_no})
+		</foreach>
+	</insert>
+	
+	<select id="getOrders" resultType="odto" parameterType="string">
+		SELECT o.o_no, o.p_no, p.p_name, o.quantity, m.mem_id, m.m_name, o_regdate, o.price, p.stock, o.state, o.amount
+		FROM ordert o
+		INNER JOIN product p
+			ON o.p_no = p.p_no
+		INNER JOIN member m
+			ON o.mem_id = m.mem_id
+		<if test = "m_role == 'mem'">
+			WHERE o.mem_id = #{mem_id} AND #{m_role}='mem'
+		</if>
+		ORDER BY o_regdate DESC
+	</select>
+	
+	<select id="getTotalOrder" resultType="int" parameterType="string">
+		SELECT COUNT(o.o_no) AS tot
+		FROM ordert o
+		INNER JOIN product p
+			ON o.p_no = p.p_no
+		INNER JOIN member m
+			ON o.mem_id = m.mem_id
+		<if test = "mem_id != null">
+			WHERE o.mem_id = #{mem_id}
+		</if>
+	</select>
+	
+	<select id="customOrDetail" resultType="odto" parameterType="odto">
+		SELECT o.o_no, o.p_no, o.quantity, o.mem_id, o_regdate, o.price, o.state, o.amount, 
+		(SELECT p_name FROM product WHERE p_no=#{p_no}) AS p_name,
+		(SELECT m_name FROM member WHERE mem_id=#{mem_id}) AS m_name, 
+		(SELECT stock FROM product WHERE p_no=#{p_no}) AS stock
+		FROM ordert o
+		WHERE mem_id=#{mem_id}
+		AND o_no = #{o_no}
+		AND p_no = #{p_no}
+	</select>
+	
+	<update id="updateState" parameterType="odto">
+		UPDATE ordert
+		SET state = #{state}
+		WHERE o_no = #{o_no}
+		AND p_no = #{p_no}
+		AND mem_id = #{mem_id}
+	</update>
+	
+</mapper>

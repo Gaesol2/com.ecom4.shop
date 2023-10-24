@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#contents {
+	float:left;
+	width: 70%;
+}
+
+table {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.col0 {
+	width: 5%;
+}
+
+.col1 {
+	width: 15%;
+}
+
+.col2 {
+	width: 40%;
+}
+
+.col3 {
+	width: 40%;
+}
+
+.main_image {
+	margin: 0 auto;
+}

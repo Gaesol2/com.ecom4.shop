@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#productmgt table {
+	width: 500px;
+	border: 1px solid blue;
+}
+
+#productmgt table th {
+	width: 100px;
+}
+
