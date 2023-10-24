@@ -13,7 +13,7 @@
 <body>
 	<c:import url="./Top.jsp"/>
 	<div id="contents">
-		dddd
+		ddddddddd
 	</div>
 	<c:import url="./Bottom.jsp"></c:import>
 </body>

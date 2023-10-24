@@ -37,13 +37,13 @@
 							<tr>
 								<th>가 격 : </th>
 								<td class="price">
-									${product.price}
+									<input type="text" value = "${product.price}">
 								</td>
 							</tr>
 							<tr>
 								<th>상품 설명 : </th>
 								<td>
-									${product.detail}
+									<input type="text" value = "${product.detail}">
 								</td>
 							</tr>
 							<tr>
