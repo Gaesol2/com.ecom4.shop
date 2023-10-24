@@ -41,7 +41,7 @@
 						<td><input type="file" name="image2" class="chk" title="이미지" placeholder="상품 설명을 입력하시오"></td>
 					</tr>
 					<tr>
-						<th colspan="2"><input id="submitInForm" type="button" value="상품등록전송"></th>
+						<th colspan="2"><input id="submitInForm" type="button" value="상품수정전송"></th>
 					</tr>
 				</table>
 			</form>
