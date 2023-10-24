@@ -22,7 +22,7 @@
 					<tr>
 					<tr>
 						<th>상품명</th>
-						<td><input type="text" name="p_name" class="chk" title="상품명" value></td>
+						<td><input type="text" name="p_name" class="chk" title="상품명" value="${pdto.p_name }"></td>
 					</tr>
 					<tr>
 						<th>재고 수량</th>
