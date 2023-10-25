@@ -21,8 +21,8 @@
 			ON o.p_no = p.p_no
 		INNER JOIN member m
 			ON o.mem_id = m.mem_id
-		<if test = "m_role == 'mem'">
-			WHERE o.mem_id = #{mem_id} AND #{m_role}='mem'
+		<if test = "mem_id != 'admin'">
+			WHERE o.mem_id = #{mem_id}
 		</if>
 		ORDER BY o_regdate DESC
 	</select>
@@ -57,5 +57,19 @@
 		AND p_no = #{p_no}
 		AND mem_id = #{mem_id}
 	</update>
+	
+	<select id="getOrderOfMember" parameterType="odto" resultType="odto">
+		<![CDATA[
+		SELECT * FROM ordert
+		WHERE mem_id = #{mem_id}
+		AND state < 5
+		]]>
+	</select>
+	
+	<delete id="deleteOrder" parameterType="mdto">
+		DELETE FROM ordert
+		WHERE mem_id = #{mem_id}
+		AND state = 5
+	</delete>
 	
 </mapper>

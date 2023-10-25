@@ -29,4 +29,6 @@ public interface MemberDAO {
 
 	int memUpProc(MemberDTO mdto);
 
+	int memDelete(MemberDTO mdto);
+
 }

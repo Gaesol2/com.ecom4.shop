@@ -100,6 +100,23 @@
 		}
 	});
 	
+	
+		//공지사항
+	$(".submitNotice").on("click",function(){
+		let flen = $("form[name=noticeGenerate] .chk").length;
+	for(var i=0; i<flen; i++){
+		if($('.chk').eq(i).val()=="" ||
+			$('.chk').eq(i).val()==null||
+			$('.chk').eq(i).val().trim()==""){
+				alert($('.chk').eq(i).attr('title')+ '를 입력하시오.');
+				$('.chk').eq(i).focus();
+				return false;
+			}  
+	}
+	$("form[name=noticeGenerate]").submit();
+	})
+	
+	
 	$("#idchk").on('propertychange change input paste',function(){
 		$.ajax({
 			async: true,

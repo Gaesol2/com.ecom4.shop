@@ -1,14 +1,20 @@
-$().ready(function(){
-	
-})
 
-function updates(flag){
+function updatess(flag){
 	openWin = window.open("/pwCheck","pwCheck",
 		"width=400, height=150, toolbar=no, location=no, menubar=no, resizable = no, scrollbars = no");
 	if(flag=='u'){
+		alert(2);
 		$("#upForm").attr("action","memUpForm");
 	} else if(flag=='d'){
+		alert(1);
+			
 		$("#upForm").attr("action","memDelete");
+		let yn = confirm("정말 삭제하시겠습니까?");
+		if(yn == true){
+		
+		} else {
+			return false;
+		}
 	}
 }
 

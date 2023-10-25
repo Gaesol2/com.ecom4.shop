@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import com.ecom4.custom.dto.MemberDTO;
 import com.ecom4.order.dto.OrderDTO;
 
 public interface OrderService {
@@ -15,5 +16,7 @@ public interface OrderService {
 	OrderDTO customOrDetail(OrderDTO ovo);
 
 	void updateState(OrderDTO ovo);
+
+	boolean deleteOrder(MemberDTO custom);
 
 }

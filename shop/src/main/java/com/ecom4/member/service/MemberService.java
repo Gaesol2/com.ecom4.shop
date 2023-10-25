@@ -24,4 +24,6 @@ public interface MemberService {
 	Map<String, Object> getMembers(MemberDTO mdto, PageDTO pdto);
 
 	int memUpProc(MemberDTO mdto);
+
+	int memDelete(MemberDTO mdto);
 }

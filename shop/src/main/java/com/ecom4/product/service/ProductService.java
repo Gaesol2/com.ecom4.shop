@@ -15,8 +15,15 @@ public interface ProductService {
 
 	int setProduct(ProductDTO pdto, MultipartFile file);
 
+	int updateProduct(ProductDTO pdto, MultipartFile file);
+
 	ProductDTO getProduct(int p_no);
 
 	void updateStocks(Hashtable<Integer, OrderDTO> hCartList);
+
+	int orderCntOfProduct(int pno);
+
+	int productDel(ProductDTO pdto);
+
 
 }

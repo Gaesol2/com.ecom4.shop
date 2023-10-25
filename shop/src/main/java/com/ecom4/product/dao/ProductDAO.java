@@ -22,4 +22,10 @@ public interface ProductDAO {
 
 	int updateStocks(List<OrderDTO> list);
 
+	int updateProduct(ProductDTO pdto);
+
+	int orderCntOfProduct(int pno);
+
+	int productDel(ProductDTO pdto);
+
 }

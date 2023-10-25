@@ -39,7 +39,7 @@
 		<div class="line"></div>
 		<nav id="main_menu">
 			<ul>
-				<li><a href="">자유 게시판</a></li>
+				<li><a href="notice">자유 게시판</a></li>
 				<li><a href="/productList">상품 목록</a></li>
 				<li><a class="aclickCart">장바구니</a></li>
 				<li><a class="aclickOrder">구매목록</a></li>

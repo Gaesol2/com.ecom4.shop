@@ -36,7 +36,7 @@
 		<div class="line"></div>
 		<nav id="main_menu">
 			<ul>
-				<li><a href="">자유 게시판 관리</a></li>
+				<li><a href="/notice">자유 게시판 관리</a></li>
 				<li><a href="/productMgt">상품관리</a></li>
 				<li><a href="/orderMgt">주문 관리</a></li>
 				<li><a href="/memberMgt">회원 관리</a></li>

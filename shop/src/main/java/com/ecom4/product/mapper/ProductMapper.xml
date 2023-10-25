@@ -27,6 +27,21 @@ VALUES(#{p_no}, #{stock}, #{price}, #{p_name}, #{detail}, SYSDATE, #{image}, #{p
 
 </insert>
 
+<update id="updateProduct" parameterType="list">
+	UPDATE product SET
+	stock  = #{stock  }, 
+	price  = #{price  }, 
+	p_name = #{p_name }, 
+	detail = #{detail }, 
+	pr_date= SYSDATE,
+	<if test = "#{image!=null}">
+	image  = #{image  }, 
+	</if> 
+	path   = #{path   }
+	WHERE p_no = #{p_no} 
+</update>
+
+
 <select id="getProduct" parameterType="pdto" resultType="pdto">
 SELECT p_no, stock, price, p_name, detail, pr_date, image, path
 FROM product
@@ -42,5 +57,16 @@ WHERE p_no = #{p_no}
 		</where>
 	</foreach>
 </update>
+
+<select id="orderCntOfProduct" parameterType="int" resultType="int">
+	SELECT COUNT(o_no)
+	FROM ordert
+	WHERE p_no = #{p_no}
+</select>
+
+<delete id = "productDel" parameterType="pdto">
+	DELETE FROM product 
+	WHERE p_no = #{p_no}
+</delete>
 
 </mapper>

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,8 @@ import com.ecom4.product.dto.ProductDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	@Autowired
 	private ProductDAO productDao;
@@ -59,6 +63,32 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.setProduct(pdto);
 	}
 
+	@Override
+	public int updateProduct(ProductDTO pdto, MultipartFile file) {
+		String sourceFileName = file.getOriginalFilename();
+		File destinationFile;
+		logger.info(sourceFileName);
+		if(sourceFileName == null || sourceFileName.length() == 0) {
+			if(sourceFileName==null || sourceFileName.length()==0) {
+				if(pdto.getImage()==null) {
+					pdto.setImage("ready.png");
+				}
+			}
+		} else {
+			pdto.setImage(sourceFileName);
+			destinationFile = new File(pdto.getPath()+sourceFileName);
+			destinationFile.getParentFile().mkdirs(); //파일명으로 생성
+			try {
+				file.transferTo(destinationFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("---------------------->");
+
+		System.out.println(pdto);
+		return productDao.updateProduct(pdto);
+	}
 
 	@Override
 	public ProductDTO getProduct(int p_no) {
@@ -78,6 +108,20 @@ public class ProductServiceImpl implements ProductService {
 		productDao.updateStocks(list);
 		
 	}
+
+
+	@Override
+	public int orderCntOfProduct(int pno) {
+		return productDao.orderCntOfProduct(pno);
+	}
+
+
+	@Override
+	public int productDel(ProductDTO pdto) {
+		return productDao.productDel(pdto);
+	}
+
+
 
 
 }

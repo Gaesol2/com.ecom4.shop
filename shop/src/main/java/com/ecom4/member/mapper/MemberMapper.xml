@@ -73,4 +73,10 @@
 	                     
 	</update>
 	
+	<delete id="memDelete" parameterType="mdto">
+		DELETE FROM member
+		WHERE mem_id = #{mem_id}
+	</delete>
+	
+	
 </mapper>

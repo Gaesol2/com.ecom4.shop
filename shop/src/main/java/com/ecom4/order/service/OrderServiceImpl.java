@@ -11,6 +11,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecom4.custom.dto.MemberDTO;
 import com.ecom4.order.dao.OrderDAO;
 import com.ecom4.order.dto.OrderDTO;
 
@@ -54,6 +55,24 @@ public class OrderServiceImpl implements OrderService {
 	public void updateState(OrderDTO ovo) {
 		orderDao.updateState(ovo);
 		
+	}
+
+	@Override
+	public boolean deleteOrder(MemberDTO custom) {
+		// 1. 사용자에 해당하는 모든 구매 이력을 가지고 와서 state가 5보다 작은 목록이 있으면 삭제 불가,
+		// 그렇지 않으면 모두 삭제하고 return true
+		// 2. 일단 조회해서 모두 가져온 후, 비즈니스 로직에서 비교한 후 가능한 경우만 삭제
+		//1번 방법 사용
+		List<OrderDTO> orderList = orderDao.getOrderOfMember(custom);
+		boolean reData = false;
+		if(orderList.size()>0) {
+			reData = false;
+		} else {
+			int r = orderDao.deleteOrder(custom);
+			if(r>0) reData =  true;
+			else reData =  false;
+		}
+		return reData;
 	}
 
 }

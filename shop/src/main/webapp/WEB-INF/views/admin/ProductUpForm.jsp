@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 등록</title>
+<title>상품 수정</title>
 </head>
 <body>
 	<c:import url="./Top.jsp"/>
 	<div id="contents">
 		<div id="productmgt">
-			<h3>상품 등록</h3>
-			<form action="/productMgtProc?flag=insert" method="post" name="formInForm" enctype="multipart/form-data">
+			<h3>상품 수정</h3>
+			<form action="/productMgtProc?flag=update" method="post" name="formInForm" enctype="multipart/form-data">
 				<table class="product">
 					<tr>
 						<th>상품 번호</th>
@@ -26,26 +26,26 @@
 					</tr>
 					<tr>
 						<th>재고 수량</th>
-						<td><input type="text" name="stock" class="chk" title="재고량" placeholder="재고 수량을 입력하시오">&nbsp;개</td>
+						<td><input type="text" name="stock" class="chk" title="재고량" value="${pdto.stock }">&nbsp;개</td>
 					</tr>
 					<tr>
 						<th>상품가격</th>
-						<td><input type="text" name="price" class="chk" title="상품가격" placeholder="단가를 입력하시오">&nbsp;원</td>
+						<td><input type="text" name="price" class="chk" title="상품가격" value="${pdto.price}">&nbsp;원</td>
 					</tr>
 					<tr>
 						<th>상품설명</th>
-						<td><input type="text" name="detail" class="chk" title="상품 설명" placeholder="상품 설명을 입력하시오"></td>
+						<td><input type="text" name="detail" class="chk" title="상품 설명" value="${pdto.detail}"></td>
 					</tr>
 					<tr>
 						<th>상품 이미지</th>
 						<td>
 							<image alt="이미지" src="upload/${pdto.image}">
 							<c:choose>
-								<c:when test="${pdto.image==null or pdto.image==ready.gif}">
-									<input type="file" name="image2" class="chk" title="이미지" value="${pdto.image }">
+								<c:when test="${pdto.image==null or pdto.image==ready.png}">
+									<input type="file" name="image2" class="chk" title="이미지" value="${pdto.image}">
 								</c:when>
-								<c:when test="${pdto.image!=null and pdto.image!=ready.gif}">
-									<input type="file" name="image2" title="이미지" value="${pdto.image }">
+								<c:when test="${pdto.image!=null and pdto.image!=ready.png}">
+									<input type="file" name="image2" title="이미지" value="${pdto.image}">
 								</c:when>
 							</c:choose>
 							

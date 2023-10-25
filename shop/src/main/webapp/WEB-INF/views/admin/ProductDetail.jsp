@@ -13,8 +13,8 @@
 			<table>
 				<tr>
 					<td>
-						<a href="upload/${product.image}">
-							<img src="upload/${product.image}" height="150" width="150">
+						<a href="/upload/${product.image}">
+							<img src="/upload/${product.image}" height="150" width="150">
 						</a>
 					</td>
 					<td>
@@ -37,13 +37,13 @@
 							<tr>
 								<th>가 격 : </th>
 								<td class="price">
-									<input type="text" value = "${product.price}">
+									${product.price}
 								</td>
 							</tr>
 							<tr>
 								<th>상품 설명 : </th>
 								<td>
-									<input type="text" value = "${product.detail}">
+									${product.detail}
 								</td>
 							</tr>
 							<tr>
@@ -61,7 +61,8 @@
 							<tr>
 								<th colspan="2" class="tableBtn">
 									<input type="button" class="productUp" value="상품수정">
-									<input type="button" class="" value="상품삭제">
+									<input type="button" class="productDel" value="상품삭제">
+									<input type="button" value="상품목록" onclick="location.href='productMgt'">
 									<input type="hidden" value="${product.p_no}" name="p_no">
 								</th>
 							</tr>

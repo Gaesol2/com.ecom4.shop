@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecom4.common.dto.PageDTO;
@@ -87,6 +88,7 @@ public class ProductController {
 		MemberDTO ssKey = null;
 		String url = null;
 		String msg = null;
+		
 		int r = 0;
 		
 		HttpSession session = request.getSession();
@@ -105,7 +107,8 @@ public class ProductController {
 					}
 					url="productMgt";
 				} else if(flag.equals("update")) {
-					
+					pdto.setPath(resourcesLocation);
+					r = productService.updateProduct(pdto, file);
 				}
 			} else {
 				url = "redirect:/";
@@ -185,5 +188,46 @@ public class ProductController {
 		session.setAttribute("ssKey", ssKey);
 		
 		return page;
+	}
+	
+	@RequestMapping("orderCntOfProduct")
+	@ResponseBody
+	public int orderCntOfProduct(HttpServletRequest request) {
+		int pno = Integer.parseInt(request.getParameter("p_no"));
+		logger.info("pno===========>"+pno);
+		//삭제하기 전에 주문내역 확인
+		int r = productService.orderCntOfProduct(pno);
+		
+		return r;
+	}
+	
+	@RequestMapping ("/productDel")
+	public String productDel(HttpServletRequest request, HttpServletResponse response,
+			Model model, ProductDTO pdto, PageDTO pageDto) {
+		
+		String url = null;
+		String msg = null;
+		
+		HttpSession session = request.getSession();
+		
+		MemberDTO mdto = (MemberDTO) session.getAttribute("ssKey");
+		
+		if(mdto!=null) {
+			if(mdto.getM_role().equals("mem")) {
+				url="/";
+			} else if(mdto.getM_role().equals("admin")) {
+				int r = productService.productDel(pdto);
+				if(r>0) msg = pdto.getP_name() + " 삭제되었습니다.";
+				else msg = pdto.getP_name() + "삭제되지 않았습니다.";
+				url = "productMgt";
+			}
+		}else {
+			msg = "로그인이 필요합니다.";
+			url = "/login";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		session.setAttribute("ssKey", mdto);
+		return "MsgPage";
 	}
 }

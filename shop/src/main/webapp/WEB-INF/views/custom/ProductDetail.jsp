@@ -49,6 +49,7 @@
 							<tr>
 								<th colspan="2">
 									<input type="button" class="cartAdd" id="submitCart" value="장바구니 담기">
+									<input type="button" value="상품목록" onclick="location.href='productList'">
 									<input type="hidden" value="${product.p_no}" name="p_no">
 								</th>
 								<td>

@@ -65,8 +65,8 @@
 		<tfoot>
 			<tr>
 				<td>
-					<input class="update" name="update" type="button" value="정보 수정" onclick="javascript:updates('u')">
-					<input class="update" name="delete" type="button" value="회원 탈퇴" onclick="javascript:updates('d')">
+					<input class="update" name="update" type="button" value="정보 수정" onclick="javascript:updatess('u')">
+					<input class="delete" name="delete" type="button" value="회원 탈퇴" onclick="javascript:updatess('d')">
 				</td>
 			</tr>
 		</tfoot>

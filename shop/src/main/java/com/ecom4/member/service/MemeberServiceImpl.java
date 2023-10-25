@@ -75,4 +75,10 @@ public class MemeberServiceImpl implements MemberService {
 		return memberDao.memUpProc(mdto);
 	}
 
+	@Override
+	public int memDelete(MemberDTO mdto) {
+		
+		return memberDao.memDelete(mdto);
+	}
+
 }

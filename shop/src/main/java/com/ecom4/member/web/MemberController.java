@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ecom4.custom.dto.MemberDTO;
 import com.ecom4.member.service.MemberService;
+import com.ecom4.wrapper.MemberWrapper;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,6 +20,9 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	MemberWrapper memberWrapper;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -215,4 +219,35 @@ public class MemberController {
 		return page;
 	}      
 	
+	@RequestMapping("/memDelete")
+	public String memDelete(HttpServletRequest request, HttpServletResponse response,
+			MemberDTO mdto, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO custom = (MemberDTO) session.getAttribute("ssKey");
+		
+		String url=null;
+		String msg=null;
+		String page=null;
+		
+		if(custom != null) {
+			int r = memberWrapper.memDelete(custom);
+			if(r>0) {
+				msg = "회원 정보가 삭제되었습니다. 재 로그인 하세요.";
+				session.invalidate();
+			} else {
+				msg = "삭제되지 않았습니다.";		
+				url="/";
+			}
+						
+		} else {
+			msg = "로그인 먼저 필요합니다.";
+			url="/login";
+		}
+
+		page="MsgPage";
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return page;
+	}      
 }
