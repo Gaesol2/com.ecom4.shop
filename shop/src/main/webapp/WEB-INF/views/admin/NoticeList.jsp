@@ -24,7 +24,7 @@
 				<td colspan="6">게시글이 없습니다.</td>
 			</tr>
 		</c:when>
-		<c:when test="${totCnt >0}">
+		<c:when test="${totCnt!= 0}">
 			<c:forEach var="notice" items="${noticeList}">
 				<tr>
 					<td>${notice.noti_no }</td>
@@ -37,6 +37,7 @@
 			</c:forEach>
 		</c:when>
 	</c:choose>
+	<input type="button" value="공지 등록" onclick="location.href='noticeGenerate'">
 </table>
 </body>
 </html>

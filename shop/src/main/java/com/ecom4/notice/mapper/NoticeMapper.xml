@@ -21,8 +21,11 @@ SELECT *FROM
       ,regdate
       ,state
    FROM noticet
-   WHERE state = 'a'
-   ORDER BY regdate DESC) a)
+   WHERE state = 'A'
+   <if test = "noti_no!=0">
+   	AND noti_no = #{noti_no}
+   </if>
+   ORDER BY noti_no DESC) a)
 </select>
 
 <insert id="generateNotice" parameterType="ndto">
@@ -34,16 +37,28 @@ SELECT *FROM
 	,subject
 	,content
 	,writer
-	,vdate
-	,state)
+	,vdate)
 	VALUES
 	(#{noti_no}
 	,#{subject}
 	,#{content}
 	,#{writer }
-	,#{vdate  }
-	,#{state })
+	,#{vdate  })
 
 </insert>
+
+<select id="getNoticies" parameterType="ndto" resultType="ndto">
+	SELECT noti_no
+      ,subject
+      ,content
+      ,readcount
+      ,writer
+      ,vdate
+      ,regdate
+      ,state
+   FROM noticet
+   WHERE noti_no = #{noti_no}
+
+</select>
 
 </mapper>

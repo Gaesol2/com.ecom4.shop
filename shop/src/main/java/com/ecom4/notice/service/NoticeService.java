@@ -11,4 +11,12 @@ public interface NoticeService {
 
 	void generateNotice(NoticeDTO ndto);
 
+	NoticeDTO getNotice(NoticeDTO ndto);
+
+	int updateProc(NoticeDTO ndto);
+
+	int deleteProc(NoticeDTO ndto);
+
+	Map<String, Object> getNoticies(NoticeDTO ndto, PageDTO pageDto);
+
 }

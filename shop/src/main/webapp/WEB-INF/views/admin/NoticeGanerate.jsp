@@ -22,11 +22,10 @@
 		</tr>
 	</table>
 	<input type="button" value="공지사항 등록" class="submitNotice">
+	<input type="button" value="공지사항 목록" onclick="location.href='/notice'">
 	<input type="hidden" name="flag" value="insert">
 	
 	<input type="hidden" value="${ssKey.m_name}" name="writer">
-	<input type="hidden" value="${noticeList.regdate}" name="regdate">
-	<input type="hidden" value="${noticeList.state}" name="state">
 </form>
 </body>
 </html>

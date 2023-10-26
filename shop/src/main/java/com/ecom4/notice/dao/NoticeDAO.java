@@ -16,4 +16,6 @@ public interface NoticeDAO {
 
 	void generateNotice(NoticeDTO ndto);
 
+	Map<String, Object> getNoticies(NoticeDTO ndto);
+
 }

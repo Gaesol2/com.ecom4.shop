@@ -37,4 +37,27 @@ public class NoticeServiceImpl implements NoticeService {
 		
 	}
 
+	@Override
+	public NoticeDTO getNotice(NoticeDTO ndto) {
+		List<NoticeDTO> noticeList = noticeDao.getNoticeList(ndto);
+		return noticeList.get(0);
+	}
+
+	@Override
+	public int updateProc(NoticeDTO ndto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteProc(NoticeDTO ndto) {
+		// TODO dao 호출 해당 공지사항을 state = 'D'로 업데이트
+		return 0;
+	}
+
+	@Override
+	public Map<String, Object> getNoticies(NoticeDTO ndto, PageDTO pageDto) {
+		return noticeDao.getNoticies(ndto);
+	}
+
 }
