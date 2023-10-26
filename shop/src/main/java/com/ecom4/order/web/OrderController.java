@@ -1,5 +1,6 @@
 package com.ecom4.order.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ecom4.cart.service.CartService;
 import com.ecom4.custom.dto.MemberDTO;
@@ -219,5 +222,24 @@ public class OrderController {
 		}
 		session.setAttribute("ssKey", admin);
 		return page;
+	}
+
+	@RequestMapping("/orderMgtProc")
+	@ResponseBody
+	public int orderMgtProc(HttpServletRequest request, HttpServletResponse response,
+			OrderDTO odto, Model model,
+			@RequestParam(value="tdArr[]") ArrayList<String> tdArr) {
+		
+		logger.info("tdArr==>"+tdArr.size()+tdArr.get(0));
+		
+		int data = 0;
+		int r = orderService.orderStateUpdate(tdArr);
+		
+		System.out.println(r);
+		
+		if(r>0) data = 1;
+		else data = 0;
+		
+		return data;
 	}
 }

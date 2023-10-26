@@ -1,6 +1,6 @@
 	
 $().ready(function(){
-	
+	$("form[name=noticeGenerate]").attr('action','');
 	//아이디 찾기
 	$(".noticeUp").on("click",function(){
 		$("form[name=noticeGenerate]").attr('action','/noticeUpForm');
@@ -12,7 +12,7 @@ $().ready(function(){
 	});
 	
 	$(".noticeUpProc").on("click",function(){
-		$("form[name=noticeForm]").attr('action','/noticeProc?flag=delete');
+		$("form[name=noticeForm]").attr('action','/noticeProc?flag=update');
 		$("form[name=noticeForm]").submit();
 	})
 })

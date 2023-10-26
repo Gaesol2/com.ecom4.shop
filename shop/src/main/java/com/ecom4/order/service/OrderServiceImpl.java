@@ -75,4 +75,10 @@ public class OrderServiceImpl implements OrderService {
 		return reData;
 	}
 
+	@Override
+	public int orderStateUpdate(ArrayList<String> tdArr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

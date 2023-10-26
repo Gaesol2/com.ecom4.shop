@@ -1,5 +1,6 @@
 package com.ecom4.order.service;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -18,5 +19,7 @@ public interface OrderService {
 	void updateState(OrderDTO ovo);
 
 	boolean deleteOrder(MemberDTO custom);
+
+	int orderStateUpdate(ArrayList<String> tdArr);
 
 }

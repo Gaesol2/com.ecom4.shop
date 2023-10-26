@@ -62,6 +62,40 @@ $().ready(function(){
 		});
 	})
 
+	//체크박스
+	$(".selectBtn").click(function(){
+//		let rowData = new Array();
+		let tdArr = new Array();
+		let checkbox = $("input[name=ck]:checked");
+		
+		checkbox.each(function(i){
+			let tr = checkbox.parent().parent().eq(i);
+			let td = tr.children();
+//			rowData.push(tr.text());
+			let pno = tr.find(td).find("input[name=p_no]").val();
+			let ono = tr.find(td).find("input[name=o_no]").val();
+			let memid = $('.acl2 input[name=mem_id]').val();
+			let state = $('select[name=state]').val();
+			tdArr.push("o_no:"+ono);
+			tdArr.push("p_no:"+pno);
+			tdArr.push("mem_id:"+memid);
+			tdArr.push("state:"+state);
+		});
+		
+		$.ajax({async:true,
+		type:'post',
+		data:{
+			tdArr
+		},
+		url:"/orderMgtProc",
+		dataType:"json",
+		success:function(){
+			document.location.href="/orderMgt"
+		}
+		});
+		
+	})
+
 }) //ready end
 	
 function cartUpdate(f, obj){

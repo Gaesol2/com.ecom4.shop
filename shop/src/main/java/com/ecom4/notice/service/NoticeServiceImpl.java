@@ -50,8 +50,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int deleteProc(NoticeDTO ndto) {
-		// TODO dao 호출 해당 공지사항을 state = 'D'로 업데이트
-		return 0;
+		return noticeDao.deleteProc(ndto);
 	}
 
 	@Override

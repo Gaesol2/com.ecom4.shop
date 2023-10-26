@@ -75,4 +75,9 @@ WHERE noti_no = #{noti_no}
       WHERE noti_no = #{noti_no}
 </update>
 
+<update id="deleteProc" parameterType="ndto">
+UPDATE noticet SET state = 'D'
+WHERE noti_no = #{noti_no}
+</update>
+
 </mapper>

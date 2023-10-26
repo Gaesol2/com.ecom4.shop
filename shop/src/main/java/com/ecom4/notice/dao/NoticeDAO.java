@@ -21,5 +21,7 @@ public interface NoticeDAO {
 	public int updateReadCnt(NoticeDTO ndto);
 
 	int updateProc(NoticeDTO ndto);
+
+	int deleteProc(NoticeDTO ndto);
 	
 }

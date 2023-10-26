@@ -32,8 +32,11 @@
 			<c:when test="${fn:length(orderList)>0}">
 				<c:forEach var="order" items="${orderList}" varStatus="i">
 					<tr>
+						<td><input type="checkbox" name="ck" value="${i.index}"></td>
+					</tr>
+					<tr>
 						<td>${order.p_no }</td>
-						<td>
+						<td class="acl2">
 							<a onclick="javascript:orderDetail(this)">${order.p_name }</a>
 							<input type="hidden" name="p_no" value="${order.p_no}">
 							<input type="hidden" name="o_no" value="${order.o_no}">
@@ -45,7 +48,7 @@
 						<td class="price">${order.amount }</td>
 						<td>${order.o_regdate }</td>
 						<td>
-							<select name="state" id="state${i.count}" disabled="disabled">
+							<select name="state" id="state${i.count}">
 								<option value="1">결제 중</option>
 								<option value="2">배송 준비</option>
 								<option value="3">배송 중</option>
@@ -63,6 +66,9 @@
 			</c:when>
 		</c:choose>
 		<tr>
+			<th colspan="9">
+				<input name="s" type="button" class="selectBtn" value="상태수정">
+			</th>
 		</tr>
 	</table>
 	</div>
