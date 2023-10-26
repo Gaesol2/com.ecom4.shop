@@ -45,8 +45,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int updateProc(NoticeDTO ndto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return noticeDao.updateProc(ndto);
 	}
 
 	@Override

@@ -165,7 +165,7 @@ public class NoticeController {
 				//고객용에서 조회수 증가
 				page = "Main";
 				contentsJsp = "custom/Notice";
-			}			
+			}
 		} else {
 			NoticeDTO notice = noticeService.getNotice(ndto);
 			model.addAttribute("notice",notice);
@@ -198,7 +198,37 @@ public class NoticeController {
 			}			
 		} else {
 			page = "Main";
-			contentsJsp = "custom/NoticeList";
+			contentsJsp = "custom/NoticeList" ;
+		}
+		
+		session.setAttribute("ssKey", mdto);
+		model.addAttribute("notice",ndto);
+		model.addAttribute("contentsJsp",contentsJsp);
+		return page;
+	}
+
+	@RequestMapping("noticeUpProc")
+	public String noticeUpProc (HttpServletRequest request, HttpServletResponse response,
+			Model model, NoticeDTO ndto, PageDTO pageDto) {
+		
+		String page = null;
+		String contentsJsp = null;
+		
+		HttpSession session = request.getSession();
+		MemberDTO mdto = (MemberDTO) session.getAttribute("ssKey");
+		
+		if(mdto!=null) {
+			if(mdto.getM_role().equals("admin")) {
+				page = "admin/Main";
+				contentsJsp = "Notice";
+				noticeService.updateProc(ndto);
+			} else {
+				page = "Main";
+				contentsJsp = "custom/NoticeList";
+			}			
+		} else {
+			page = "Main";
+			contentsJsp = "custom/NoticeList" ;
 		}
 		
 		session.setAttribute("ssKey", mdto);

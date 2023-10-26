@@ -8,7 +8,7 @@ public class OrderDTO {
 	private int price;
 	private int quantity;
 	private String o_regdate;
-	private String state;
+	private int state;
 	private String mem_id;   //외래키
 	private int p_no;   //외래키
 	private int stock;

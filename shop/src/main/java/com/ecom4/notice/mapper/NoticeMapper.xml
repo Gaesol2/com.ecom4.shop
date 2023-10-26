@@ -61,4 +61,18 @@ SELECT *FROM
 
 </select>
 
+<update id="updateReadCnt" parameterType="ndto">
+UPDATE noticet
+SET readcount = readcount+1
+WHERE noti_no = #{noti_no}
+</update>
+
+<update id="updateProc" parameterType="ndto">
+	UPDATE noticet
+	SET subject = #{subject}
+      ,content = #{content}
+      ,vdate = #{vdate }
+      WHERE noti_no = #{noti_no}
+</update>
+
 </mapper>

@@ -18,4 +18,8 @@ public interface NoticeDAO {
 
 	Map<String, Object> getNoticies(NoticeDTO ndto);
 
+	public int updateReadCnt(NoticeDTO ndto);
+
+	int updateProc(NoticeDTO ndto);
+	
 }

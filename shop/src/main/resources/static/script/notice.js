@@ -10,4 +10,9 @@ $().ready(function(){
 		$("form[name=noticeGenerate]").attr('action','/noticeProc?flag=delete');
 		$("form[name=noticeGenerate]").submit();
 	});
+	
+	$(".noticeUpProc").on("click",function(){
+		$("form[name=noticeForm]").attr('action','/noticeProc?flag=delete');
+		$("form[name=noticeForm]").submit();
+	})
 })

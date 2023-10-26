@@ -19,4 +19,5 @@ public interface NoticeService {
 
 	Map<String, Object> getNoticies(NoticeDTO ndto, PageDTO pageDto);
 
+	
 }

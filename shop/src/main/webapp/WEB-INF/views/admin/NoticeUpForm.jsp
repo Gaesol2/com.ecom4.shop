@@ -13,7 +13,7 @@
 	<h3 style="text-align:center">공지사항 수정</h3>
 		<tr>
 			<th>번호</th>
-			<td><input type="text" name="noti_no" style="width:300px;" value="${notice.noti_no }" class="chk"></td>
+			<td><input type="text" name="noti_no" style="width:300px;" value="${notice.noti_no }" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -26,8 +26,8 @@
 			<td><input type="date" name="vdate" style="width:300px;" value="${notice.vdate }"></td>
 		</tr>
 	</table>
-	<input type="button" value="수정" class="noticeUp">
-	<input type="button" value="삭제" class="noticeDel">
+	<input type="button" value="수정" class="noticeUpProc">
+	<input type="button" value="취소" onclick="location.href='notice'">
 	<input type="hidden" name="flag" value="insert">
 	
 	<input type="hidden" value="${ssKey.m_name}" name="writer">
