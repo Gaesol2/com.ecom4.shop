@@ -11,8 +11,6 @@
 <title>희수네 쇼핑몰</title>
 </head>
 <body>
-	
-	
 	<c:import url="./custom/Top.jsp"/>
 	<div id="contents">
 		<c:import url="./${contentsJsp}.jsp"/>

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+*{margin:0; padding: 0;}
+table {border:1px solid black; border-collapse: collapse; width:90%; margin:0 auto;}
+th, td {border:1px solid black; border-collapse: collapse; padding:10px; margin:5px;}
+th {background-color: #cfcfff;}
+td {background-color: #ffffff; font-weight: 200;}
+.btn {height:30px; width:850px; text-align:right;}
+a {color:black; text-decoration: none; }
+a:hover {font-weight: bold;}
+.col1 {width:8%;}
+.col2 {width:35%;}
+.col3 {width:20%;}
+.col4 {width:15%;}
+.col5 {width:10%;}
+.col6 {width:12%;}

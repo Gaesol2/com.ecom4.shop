@@ -15,6 +15,7 @@
          <typeAlias alias="pdto" type="com.ecom4.product.dto.ProductDTO" />
          <typeAlias alias="pageDto" type="com.ecom4.common.dto.PageDTO" />
          <typeAlias alias="odto" type="com.ecom4.order.dto.OrderDTO" />
-         <typeAlias alias="ndto" type="com.ecom4.notice.dto.NoticeDTO"/>         
+         <typeAlias alias="ndto" type="com.ecom4.notice.dto.NoticeDTO"/> 
+         <typeAlias alias="bvo" type="com.ecom4.board.dto.BoardDTO" />        
      </typeAliases>
 </configuration>

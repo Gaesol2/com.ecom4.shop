@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.ecom4.board.dao.BoardDAO">
+
+<select id="getArticles" resultType="bvo">
+SELECT * 
+FROM(SELECT ROWNUM AS rn, A.* 
+FROM(SELECT bno, bref, bstep, blevel, readcount, 
+subject, content, writer, regdate, ip, passwd 
+FROM board 
+ORDER BY bref DESC, bno, bstep) A) 
+WHERE rn BETWEEN #{start} AND #{end}
+</select>
+
+<select id="getTotalCnt" resultType="int">
+	SELECT COUNT(bno) FROM BOARD
+</select>
+
+<insert id="writeAction" parameterType="bvo">
+	<selectKey keyProperty="nbno" resultType="int" order="BEFORE">
+		SELECT NVL(MAX(bno),0)+1 AS nbno FROM board
+	</selectKey>
+	INSERT INTO board
+		(bno, bref, bstep, blevel, readcount, 
+		subject, content, writer, regdate, ip, passwd) 
+	VALUES (
+		#{nbno},
+		<choose>
+			<when test="bno>0">
+				#{bno},
+				#{bstep}+1,
+				#{blevel}+1,
+			</when>
+			<when test="bno==0 and bref==0">
+				#{nbno},
+				0,
+				0,
+			</when>
+		</choose>
+		#{readcount}, #{subject}, #{content}, #{writer}, SYSDATE, #{ip}, #{passwd}
+	)
+</insert>
+
+<update id="updateReadCnt" parameterType="bvo">
+	UPDATE board SET readcount = readcount+1
+	WHERE bno = #{bno}
+</update>
+
+<select id="getArticle" resultType="bvo" parameterType="bvo">
+	SELECT bno, bref, bstep, blevel, readcount, 
+		subject, content, writer, regdate, ip, passwd 
+	FROM board
+	WHERE bno = #{bno}
+</select>
+
+<update id="updateArticle" parameterType="bvo">
+	UPDATE board
+	SET 
+	subject = #{subject}, 
+	writer = #{writer}, 
+	content = #{content}, 
+	regdate = SYSDATE,
+	ip = #{ip},
+	passwd = #{passwd}
+	WHERE bno = #{bno}
+</update>
+
+<delete id="deleteArticle">
+	DELETE FROM board
+	WHERE bno = #{bno}
+</delete>
+
+</mapper>

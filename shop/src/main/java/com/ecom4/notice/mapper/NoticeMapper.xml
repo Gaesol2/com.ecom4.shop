@@ -6,6 +6,7 @@
 <select id="getTotCnt" resultType="int">
 	SELECT COUNT(noti_no)
 	FROM noticet
+	WHERE state='A'
 </select>
 
 <select id="getNoticeList" parameterType="ndto" resultType="ndto">
@@ -26,6 +27,7 @@ SELECT *FROM
    	AND noti_no = #{noti_no}
    </if>
    ORDER BY noti_no DESC) a)
+   WHERE rr BETWEEN #{start} AND #{end}
 </select>
 
 <insert id="generateNotice" parameterType="ndto">

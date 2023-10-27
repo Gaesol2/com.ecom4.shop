@@ -73,27 +73,32 @@ public class OrderServiceImpl implements OrderService {
 		if(orderList.size()>0) {
 			reData = false;
 		} else {
-			int r = orderDao.deleteOrder(custom);
-			if(r>0) reData =  true;
-			else reData =  false;
+			try {
+				orderDao.deleteOrder(custom);
+				reData = true;
+			} catch (Exception e) {reData =  false;}
+			
 		}
 		return reData;
 	}
 
 	@Override
 	public void orderStateUpdate(ArrayList<String> tdArr) {
+		
 		List<OrderDTO> list = new ArrayList<OrderDTO>();
+		
 		for(int i = 0; i<tdArr.size();i+=4) {
 			OrderDTO odto = new OrderDTO();
 			int n=0, no=0;
 			String mid = null;
+			
 			n = tdArr.get(i).indexOf(":");
 			no = Integer.parseInt(tdArr.get(i).substring(n+1));
 			odto.setO_no(no);
 			
 			n = tdArr.get(i+1).indexOf(":");
 			no = Integer.parseInt(tdArr.get(i+1).substring(n+1));
-			odto.setO_no(no);
+			odto.setP_no(no);
 					
 			n = tdArr.get(i+2).indexOf(":");
 			mid = tdArr.get(i+2).substring(n+1);
@@ -105,7 +110,7 @@ public class OrderServiceImpl implements OrderService {
 			list.add(odto);
 		}
 		logger.info("orderService==>"+list);
-		orderDao.updateORderState(list);
+		orderDao.updateOrderState(list);
 	}
 
 }

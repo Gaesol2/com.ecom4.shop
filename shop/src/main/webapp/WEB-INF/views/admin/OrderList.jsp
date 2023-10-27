@@ -33,8 +33,6 @@
 				<c:forEach var="order" items="${orderList}" varStatus="i">
 					<tr>
 						<td><input type="checkbox" name="ck" value="${i.index}" readonly="readonly"></td>
-					</tr>
-					<tr>
 						<td>${order.p_no }</td>
 						<td class="acl2">
 							<a onclick="javascript:orderDetail(this)">${order.p_name }</a>

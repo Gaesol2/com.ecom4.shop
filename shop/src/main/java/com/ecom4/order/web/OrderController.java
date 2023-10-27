@@ -230,13 +230,16 @@ public class OrderController {
 			OrderDTO odto, Model model,
 			@RequestParam(value="tdArr[]") ArrayList<String> tdArr) {
 		
-		logger.info("tdArr==>"+tdArr.size()+tdArr.get(4));
+		HttpSession session = request.getSession();
+		MemberDTO admin = (MemberDTO) session.getAttribute("ssKey");
+		if(admin!=null && admin.getM_role().equals("admin")) {
+			
 		
 		try {
 			orderService.orderStateUpdate(tdArr);
 		} catch (Exception e) {
 			logger.info(e.getMessage());
-			logger.info("111111111");
+		}
 		}
 		
 	}

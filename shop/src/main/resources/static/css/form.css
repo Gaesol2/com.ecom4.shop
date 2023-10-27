@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+* {margin:0; padding:0;}
+
+table {
+	width:70%;
+	margin: 0 auto;
+	border:1px solid black;
+	background-color: #f6f6ee;
+	padding:10px;
+	border-radius:25px;
+}
+
+table th {
+	border : 1px solid balck;
+}
+
+table tr {text-align:center;}
+
+table th {
+	text-align:center;
+	background-color : #ffffff;
+	border-radius:10px;
+}
+
+input {width:90%; heigh:30px; padding:3px;}
+
+textarea {
+	width:90%; height:300px; padding:3px;
+	resize: none;	
+}
+
+.btn {width:100px; margin-top:5px; margin-bottom:10px;}
+
+h3 {margin:5px 5px 10px 5px;}

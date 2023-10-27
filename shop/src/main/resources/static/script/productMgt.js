@@ -63,12 +63,12 @@ $().ready(function(){
 	})
 
 	//체크박스 
-	$("select[name='state'").change(function(){
-//		let rowData = new Array();
+	$("select[name='state']").change(function(){
 		let tr = $(this).parent().parent();
 		let td = tr.children();
-		tr.find(td).find("input[name=ck]").prop("checked", true);
-		
+		tr.find(td).find("input[name='ck']").prop("checked", true);
+	});
+	
 		$(".selectBtn").click(function(){
 			let tdArr = new Array();
 			let checkbox = $("input[name=ck]:checked");
@@ -94,12 +94,10 @@ $().ready(function(){
 				},
 				url:"/orderMgtProc",
 				dataType : "json",
-				//success:document.location.href='/orderMgt'
 				success : setInterval() //콜백함수
 			});
 			
 			function setInterval(){
-				alert(1)
 				let tr = $("select[name='state']").parent().parent();
 				let td = tr.children();
 				tr.find(td).find("input[name=ck]").prop("checked",false);
@@ -107,7 +105,7 @@ $().ready(function(){
 		});
 		
 		
-	})
+	
 
 }) //ready end
 	

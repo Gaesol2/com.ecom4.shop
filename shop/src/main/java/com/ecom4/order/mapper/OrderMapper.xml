@@ -72,13 +72,13 @@
 		AND state = 5
 	</delete>
 	
-	<update id="updateORderState" parameterType="list">
+	<update id="updateOrderState" parameterType="list">
 		<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;">
 			UPDATE ordert SET
 			state = #{item.state},
 			o_regdate = SYSDATE
 			WHERE o_no = #{item.o_no}
-			AND p_no = #{item.p+no}
+			AND p_no = #{item.p_no}
 			AND mem_id = #{item.mem_id}
 		</foreach>
 	</update>

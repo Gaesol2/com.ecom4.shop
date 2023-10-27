@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ecom4.common.dto.PageDTO;
+import com.ecom4.common.dto.RowInterPage;
 import com.ecom4.custom.dto.MemberDTO;
 import com.ecom4.notice.dto.NoticeDTO;
 import com.ecom4.notice.service.NoticeService;
@@ -54,6 +55,9 @@ public class NoticeController {
 		model.addAttribute("contentsJsp",contentsJsp);
 		model.addAttribute("noticeList",reSet.get("noticeList"));
 		model.addAttribute("totCnt",reSet.get("totCnt"));
+		model.addAttribute("pageDto",reSet.get("pageDto"));
+		model.addAttribute("pBlock",RowInterPage.PAGE_OF_BLOCK);
+		
 		return page;
 	}
 
