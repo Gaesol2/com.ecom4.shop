@@ -62,37 +62,50 @@ $().ready(function(){
 		});
 	})
 
-	//체크박스
-	$(".selectBtn").click(function(){
+	//체크박스 
+	$("select[name='state'").change(function(){
 //		let rowData = new Array();
-		let tdArr = new Array();
-		let checkbox = $("input[name=ck]:checked");
+		let tr = $(this).parent().parent();
+		let td = tr.children();
+		tr.find(td).find("input[name=ck]").prop("checked", true);
 		
-		checkbox.each(function(i){
-			let tr = checkbox.parent().parent().eq(i);
-			let td = tr.children();
-//			rowData.push(tr.text());
-			let pno = tr.find(td).find("input[name=p_no]").val();
-			let ono = tr.find(td).find("input[name=o_no]").val();
-			let memid = $('.acl2 input[name=mem_id]').val();
-			let state = $('select[name=state]').val();
-			tdArr.push("o_no:"+ono);
-			tdArr.push("p_no:"+pno);
-			tdArr.push("mem_id:"+memid);
-			tdArr.push("state:"+state);
+		$(".selectBtn").click(function(){
+			let tdArr = new Array();
+			let checkbox = $("input[name=ck]:checked");
+			
+			checkbox.each(function(i){
+				let tr = checkbox.parent().parent().eq(i);
+				let td = tr.children();
+				let pno = tr.find(td).find("input[name=p_no]").val();
+				let ono = tr.find(td).find("input[name=o_no]").val();
+				let memid = tr.find(td).find('input[name=mem_id]').val();
+				let state = tr.find(td).find('select[name=state]').val();
+
+				tdArr.push("o_no:"+ono);
+				tdArr.push("p_no:"+pno);
+				tdArr.push("mem_id:"+memid);
+				tdArr.push("state:"+state);
+			})
+			
+			$.ajax({async:false,
+				type:'post',
+				data:{
+					tdArr
+				},
+				url:"/orderMgtProc",
+				dataType : "json",
+				//success:document.location.href='/orderMgt'
+				success : setInterval() //콜백함수
+			});
+			
+			function setInterval(){
+				alert(1)
+				let tr = $("select[name='state']").parent().parent();
+				let td = tr.children();
+				tr.find(td).find("input[name=ck]").prop("checked",false);
+			}
 		});
 		
-		$.ajax({async:true,
-		type:'post',
-		data:{
-			tdArr
-		},
-		url:"/orderMgtProc",
-		dataType:"json",
-		success:function(){
-			document.location.href="/orderMgt"
-		}
-		});
 		
 	})
 

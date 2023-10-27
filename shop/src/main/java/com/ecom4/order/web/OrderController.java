@@ -226,20 +226,18 @@ public class OrderController {
 
 	@RequestMapping("/orderMgtProc")
 	@ResponseBody
-	public int orderMgtProc(HttpServletRequest request, HttpServletResponse response,
+	public void orderMgtProc(HttpServletRequest request, HttpServletResponse response,
 			OrderDTO odto, Model model,
 			@RequestParam(value="tdArr[]") ArrayList<String> tdArr) {
 		
-		logger.info("tdArr==>"+tdArr.size()+tdArr.get(0));
+		logger.info("tdArr==>"+tdArr.size()+tdArr.get(4));
 		
-		int data = 0;
-		int r = orderService.orderStateUpdate(tdArr);
+		try {
+			orderService.orderStateUpdate(tdArr);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			logger.info("111111111");
+		}
 		
-		System.out.println(r);
-		
-		if(r>0) data = 1;
-		else data = 0;
-		
-		return data;
 	}
 }

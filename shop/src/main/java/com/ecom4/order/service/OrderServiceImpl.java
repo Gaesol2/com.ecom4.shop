@@ -8,16 +8,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecom4.custom.dto.MemberDTO;
 import com.ecom4.order.dao.OrderDAO;
 import com.ecom4.order.dto.OrderDTO;
+import com.ecom4.order.web.OrderController;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	
 	@Autowired
 	OrderDAO orderDao;
 	
@@ -76,9 +81,31 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int orderStateUpdate(ArrayList<String> tdArr) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void orderStateUpdate(ArrayList<String> tdArr) {
+		List<OrderDTO> list = new ArrayList<OrderDTO>();
+		for(int i = 0; i<tdArr.size();i+=4) {
+			OrderDTO odto = new OrderDTO();
+			int n=0, no=0;
+			String mid = null;
+			n = tdArr.get(i).indexOf(":");
+			no = Integer.parseInt(tdArr.get(i).substring(n+1));
+			odto.setO_no(no);
+			
+			n = tdArr.get(i+1).indexOf(":");
+			no = Integer.parseInt(tdArr.get(i+1).substring(n+1));
+			odto.setO_no(no);
+					
+			n = tdArr.get(i+2).indexOf(":");
+			mid = tdArr.get(i+2).substring(n+1);
+			odto.setMem_id(mid);
+			
+			n = tdArr.get(i+3).indexOf(":");
+			no = Integer.parseInt(tdArr.get(i+3).substring(n+1));
+			odto.setState(no);
+			list.add(odto);
+		}
+		logger.info("orderService==>"+list);
+		orderDao.updateORderState(list);
 	}
 
 }

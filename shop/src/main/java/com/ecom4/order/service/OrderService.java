@@ -20,6 +20,6 @@ public interface OrderService {
 
 	boolean deleteOrder(MemberDTO custom);
 
-	int orderStateUpdate(ArrayList<String> tdArr);
+	void orderStateUpdate(ArrayList<String> tdArr);
 
 }

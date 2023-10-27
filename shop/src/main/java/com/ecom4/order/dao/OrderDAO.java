@@ -24,4 +24,6 @@ public interface OrderDAO {
 
 	int deleteOrder(MemberDTO custom);
 
+	void updateORderState(List<OrderDTO> list);
+
 }

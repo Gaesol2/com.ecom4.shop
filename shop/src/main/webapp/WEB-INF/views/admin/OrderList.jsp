@@ -32,7 +32,7 @@
 			<c:when test="${fn:length(orderList)>0}">
 				<c:forEach var="order" items="${orderList}" varStatus="i">
 					<tr>
-						<td><input type="checkbox" name="ck" value="${i.index}"></td>
+						<td><input type="checkbox" name="ck" value="${i.index}" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>${order.p_no }</td>
